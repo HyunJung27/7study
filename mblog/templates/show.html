@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+            
+        <style>
+            @font-face { font-family: 'Godo'; font-style: normal; font-weight: 400; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff'); } @font-face { font-family: 'Godo'; font-style: normal; font-weight: 700; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff'); } .godo * { font-family: 'Godo', sans-serif; }
+            .container { font-family: Godo;}
+            .new {padding-top:20px; padding-left:10px; font-size:20px;}
+            .text {padding:10px; font-size:20px;}
+        </style>
+    </head>
+
+    <body>
+        {% extends 'base.html' %}
+        {% block content %}
+        <div class="container">
+        <div class="new">
+            <p><a href="{% url 'post' %}">새로운 글 작성하기</a></p>
+        </div>
+        <div class="text">   
+            {% for board in boards.all %}
+                <a href="{% url 'detail' board.id %}">
+                    <p>제목: {{board.title}}</p>
+                </a>
+                <p>내용: {{board.body}}</p>
+                <small class="text-muted">{{board.pub_date}}</small>
+                <hr>
+        
+            {% endfor %}
+        </div>
+        </div>
+
+        
+        {% endblock %}
+        
+    </body>
+</html>

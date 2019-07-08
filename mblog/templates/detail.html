@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            @font-face { font-family: 'Godo'; font-style: normal; font-weight: 400; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff'); } @font-face { font-family: 'Godo'; font-style: normal; font-weight: 700; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff'); } .godo * { font-family: 'Godo', sans-serif; }
+            .container {font-family: Godo;}
+        </style>
+    </head>
+
+    <body>
+        {% extends 'base.html' %}
+
+        {% block content %}
+        <br>
+        <div class="container">
+            <a href="{% url 'show' %}">뒤로</a>
+            <a href="{% url 'edit' pk=board.pk %}">수정</a>
+            <h2>제목: {{board.title}}</h2> 
+            <p>내용: {{board.body}}</p>
+            <P>등록일: {{board.update_date}}</P>
+            <a href="{% url 'delete' pk=board.pk %}">삭제</a>
+
+        </div>
+        {% endblock %}
+        
+    </body>
+</html>
