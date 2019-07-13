@@ -1,0 +1,77 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset=utf-8>
+        <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=plwk0hohax"></script>
+        
+            
+
+        
+        <style type="text/css">
+            @font-face { font-family: 'Godo'; font-style: normal; font-weight: 400; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff'); } @font-face { font-family: 'Godo'; font-style: normal; font-weight: 700; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff'); } .godo * { font-family: 'Godo', sans-serif; }
+            .container { font-family: Godo;}
+            .iw_inner{font-family: Godo; font-size: 10px; width:120px; height:50px;}
+            /*#id {padding:20px; box-align:center;}*/
+
+            
+        </style>
+    </head>
+
+    <body>
+        {% extends 'base.html' %}
+        {% block content %}
+        {% load staticfiles %}
+        
+        </div>
+
+        <!--지도-->
+        <div id="map" style="width:40%;height:400px;"></div> <!--지도를 띄워주는 부분-->
+        
+
+
+        <script>
+        var HOME_PATH = window.HOME_PATH || '.';
+
+        var duksung = new naver.maps.LatLng(37.6511988,127.0161604),
+            map = new naver.maps.Map('map', {
+                center: duksung.destinationPoint(0, 500),
+                zoom: 10
+            }),
+            marker = new naver.maps.Marker({
+                map: map,
+                position: duksung
+            });
+
+        var contentString = [
+                '<div class="iw_inner">',
+                '   <h6>덕성여자대학교</h6>',
+                '   <p2>서울특별시 도봉구 쌍문1동 삼양로144길 33<br />',
+                '       <img src={% static "img/duksung.png" %} alt="덕성여대" /><br />',
+                '       <a href="http://www.duksung.ac.kr/main.do?isMaster=N&isLogined=N&viewPrefix=%2FWEB-INF%2Fjsp%2Fcms&urlRootPath=&siteResourcePath=%2Fsite%2Fduksung" target="_blank">www.duksung.ac.kr</a>',
+                '   </p2>',
+                '</div>'
+            ].join('');
+
+        var infowindow = new naver.maps.InfoWindow({
+            content: contentString
+        });
+
+        naver.maps.Event.addListener(marker, "click", function(e) {
+            if (infowindow.getMap()) {
+                infowindow.close();
+            } else {
+                infowindow.open(map, marker);
+            }
+        });
+
+        infowindow.open(map, marker);
+
+        </script>
+        <br>
+
+        
+        
+        {% endblock %}
+        
+    </body>
+</html>

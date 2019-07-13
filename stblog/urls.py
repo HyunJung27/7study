@@ -20,5 +20,7 @@ import mblog.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', mblog.views.show, name='show'),
+    path('slide/', mblog.views.slide, name='slide'),
+    path('map/', mblog.views.map, name='map'),
     path('mblog/', include('mblog.urls')),
 ]

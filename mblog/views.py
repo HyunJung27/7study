@@ -45,3 +45,10 @@ def delete(request, pk):
     board.delete()
     return redirect('show')
 
+def slide(request):
+        return render(request, 'slide.html')
+
+
+def map(request):
+        return render(request, 'map.html')
+
