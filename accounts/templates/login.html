@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            @font-face { font-family: 'Binggrae-Bold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff'); font-weight: normal; font-style: normal; }
+            .container { padding-left:80px; padding-right:80px; font-family:Binggrae-Bold;}
+        </style>
+    </head>
+    <body>
+        {% extends 'base.html' %}
+        {% block content %}
+
+        <div class="container">
+            {% if error %} <!--예외상황까지 고려-->
+            {{ error }}
+            <br>
+            <br>
+            {% endif %}
+            <br>
+            <br>
+            <h1>로그인</h1>
+            <form method="POST" action="{% url 'login' %}"> <!--form태그 안에 아무것도 적지 않으면 기본적으로 GET방식으로 주고 받는다. -->
+               {% csrf_token %} <!--보안을 위해 써주는 난수 발생기 csrf 공격을 방어-->
+                Username: <!--csrf: Cross Site Request -->
+                <br>
+                <input name="username" type="text" value="">
+                <br>
+                Password:
+                <br>
+                <input name="password" type="password" value="">
+                <br>
+                <br>
+
+                <input class="btn btn-dark" type="submit" value="Login">
+
+            </form>
+            
+        </div>
+        {% endblock %}
+    </body>
+</html>

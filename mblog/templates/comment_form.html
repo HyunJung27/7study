@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        </style>
+    </head>
+    <body>
+        {% extends 'base.html' %}
+        {% block content %}
+
+        <div class='container'>
+                <form method = 'POST' action="">
+                    {% csrf_token %}
+                    <table>
+                        {{comment_form.as_table}}
+                    </table>
+                    <br>
+                    <button type="submit" class="btn btn-dark">등록</button>
+                </form>
+        </div>
+
+        {% endblock %}
+    </body>
+</html>
+

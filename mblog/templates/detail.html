@@ -17,11 +17,48 @@
             <a href="{% url 'edit' pk=board.pk %}">수정</a>
             <h2>제목: {{board.title}}</h2> 
             <p>내용: {{board.body}}</p>
-            <P>등록일: {{board.update_date}}</P>
+            <P>등록일: {{board.update_date|date:"Y년 m월 d일 P"}}</P>
             <a href="{% url 'delete' pk=board.pk %}">삭제</a>
 
         </div>
-        {% endblock %}
+
+        <br><br>
+        <!--댓글쓰기 폼-->
+        <div class="container">
+        <h5>댓글</h5>
+        <div class="card-body"></div>
+            <form method="POST" action="comment/write/">
+            {% csrf_token %}
+            <textarea rows="3" cols="80" name="content">
+    
+            </textarea>
+            <br><br>
+        
+            <button type="submit" class="btn btn-dark">등록</button>
+    
+            </form>
+        </div>
+    </div>
+     
+    <br>
+    
+    <!--댓글 목록을 출력할 영역-->
+    {% for comment in board.comments.all %}
+    <div class="container">
+    <div class="comment_body">
+            <h5>{{comment.content}}</h5>
+            <small>{{comment.created_at|date:"Y년 m월 d일 P"}}</small>
+           
+            <a href="{% url 'comment_edit' board.pk comment.pk %}">수정</a>
+            
+    
+    </div>
+    </div>
+    
+    {% endfor %}
+    <br>
+    <br>
+    {% endblock %}
         
     </body>
 </html>
