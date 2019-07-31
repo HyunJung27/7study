@@ -3,38 +3,40 @@
     <head>
         <style>
         @font-face { font-family: 'Binggrae-Bold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff'); font-weight: normal; font-style: normal; }
-        .container { padding-left:80px; padding-right:80px; font-family:Binggrae-Bold;}
+        .container { 
+            font-family:Binggrae-Bold;
+                font-family:Binggrae-Bold;
+                border: 20px solid #424242;
+                padding: 5px 20px;
+                position: absolute;
+                top:28%;
+                left:30%;
+            }
         </style>
     </head>
     <body>
         {% extends 'base.html' %}
         {% block content %}
 
-        <div class="container">
+        <div class="container" style="text-align:center; width:650px; height:450px;">
             {% if error %} <!--예외상황까지 고려-->
             {{ error }}
             <br>
-            <br>
             {% endif %}
             <br>
-            <br>
-            <h1>회원가입</h1>
+            <p style="font-size:40px; text-align:center; ">회원가입</p><br>
             <form method="POST" action="{% url 'signup' %}"> <!--form태그 안에 아무것도 적지 않으면 기본적으로 GET방식으로 주고 받는다. -->
                {% csrf_token %} <!--보안을 위해 써주는 난수 발생기 csrf 공격을 방어-->
-                Username: <!--csrf: Cross Site Request -->
-                <br>
+                Username:<!--csrf: Cross Site Request -->
                 <input name="username" type="text" value="">
-                <br>
+                <br><br><br>
                 Password:
-                <br>
                 <input name="password1" type="password" value="">
-                <br>
-                <br>
+                <br><br><br>
                 Confirm Password:
-                <br>
                 <input name="password2" type="password" value="">
-
-                <input class="btn btn-dark" type="submit" value="SignUp">
+                <br><br><br>
+                <input class="btn btn-dark" type="submit" style="float:right; width:100px;" value="SignUp">
 
             </form>
             

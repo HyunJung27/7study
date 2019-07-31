@@ -19,20 +19,22 @@
 
         
         <div class="container">
-        <div class="new">
-            <a href="{% url 'post' %}">새로운 글 작성하기</a>
-        </div>
-        <div class="text">   
-            {% for board in boards.all %}
-                <a href="{% url 'detail' board.id %}">
-                    <p>제목: {{board.title}}</p>
-                </a>
-                <p>내용: {{board.body}}</p>
-                <small class="text-muted">{{board.pub_date}}</small>
-                <hr>
-        
-            {% endfor %}
-        </div>
+            <div class="new">
+                <a href="{% url 'post' %}">새로운 글 작성하기</a>
+            </div>
+            <div class="text">   
+                {% for board in boards.all %}
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{% url 'detail' board.id %}"><h4 class="card-title">{{board.title}}</h4></a>
+                      <h6 class="card-subtitle mb-2 text-muted">{{board.pub_date}}</h6>
+                      <p class="card-text">{{board.summary}}</p>
+                      <a href="{% url 'detail' board.id %}"  class="card-link">...more</a>
+                    </div>
+                </div>
+                <br>
+                {% endfor %}
+            </div>
         </div>
         
         {% endblock %}
